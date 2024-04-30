@@ -1,0 +1,11 @@
+{
+  "WARNING": "Do NOT directly plug to GPIO",
+
+  "stripSize": 50,
+  "dma": 10,
+  "freq": 800000,
+  "gpio": 12,
+  "invert": false,
+  "brightness": 255,
+  "stripType": "sk6812-grbw"
+}
