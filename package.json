@@ -1,0 +1,16 @@
+{
+  "name": "dotpi-led",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@soundworks/core": "^4.0.0-alpha.20",
+    "rpi-ws281x-native": "^1.0.4"
+  }
+}
