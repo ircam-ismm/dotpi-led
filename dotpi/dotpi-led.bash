@@ -41,7 +41,6 @@ dotpi_led_update() (
       dotpi echo_error "could not change directory to runtime: ${destination_runtime}"
       exit 1
     }
-    npm install --omit dev --loglevel verbose
   )
 
   files_to_link=()
@@ -68,8 +67,12 @@ dotpi_led_update() (
     if [[ ! -e "$ledstrip_config_file" ]]; then
       dotpi echo_error "dotpi-led: no configuration file ${ledstrip_config_file} in ${destination}"
     else
-      dotpi echo_info "dotpi-led: using configuration file ${ledstrip_config_file}"
-      ln -s -f -- "ledstrip-config-${dotpi_led_strip_configuration}.json" "ledstrip-config-default.json"
+      if [[ "$dotpi_led_strip_configuration" = 'default' ]] ; then
+        dotpi echo_info "dotpi-led: using default configuration file ${ledstrip_config_file}"
+      else
+        dotpi echo_info "dotpi-led: using configuration file ${ledstrip_config_file}"
+        ln -s -f -- "ledstrip-config-${dotpi_led_strip_configuration}.json" "ledstrip-config-default.json"
+      fi
     fi
   fi
 
