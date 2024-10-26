@@ -41,6 +41,7 @@ dotpi_led_update() (
       dotpi echo_error "could not change directory to runtime: ${destination_runtime}"
       exit 1
     }
+    npm install --omit dev --loglevel verbose
   )
 
   files_to_link=()
