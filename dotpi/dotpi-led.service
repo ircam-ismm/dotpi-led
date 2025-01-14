@@ -3,8 +3,8 @@ Description=dotpi-led service
 
 [Service]
 Type=exec
-WorkingDirectory=/opt/dotpi/share/dotpi-led/runtime
-ExecStart=/usr/bin/node server.js --configuration ../ledstrip-config-default.json
+ExecStart=npm run dotpi
+WorkingDirectory=/opt/dotpi/lib/dotpi_modules/@dotpi/led
 Restart=always
 
 # wait before restarting

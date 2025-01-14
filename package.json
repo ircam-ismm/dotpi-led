@@ -1,17 +1,28 @@
 {
-  "name": "dotpi-led",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@dotpi/led",
+  "version": "2.0.0",
+  "description": "LED server for dotpi clients",
   "type": "module",
+  "bin": {
+    "dotpi_led": "./src/dotpi_led/index.js"
+  },
+  "exports": {
+    "./*.js": "./src/*.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "./dotpi/dotpi_install",
+    "preuninstall": "./dotpi/dotpi_uninstall",
+    "dotpi": "node ./src/server/index.js"
   },
   "author": "",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@soundworks/core": "4.0.0-alpha.25",
-    "commander": "^12.0.0",
+    "@dotpi/javascript": "^1.4.0",
+    "@dotpi/module": "^1.4.0",
+    "@soundworks/core": "4.0.0-alpha.29",
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0",
+    "execa": "^9.5.2",
     "rpi-ws281x-native": "^1.0.4"
   }
 }

@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+
+import path from 'node:path';
+import fs from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+
+import * as echo from '@dotpi/javascript/echo.js';
+import {
+  dotpiRootGet,
+  isRaspberryPi,
+} from '@dotpi/javascript/system.js';
+import * as service from '@dotpi/javascript/service.js';
+
+if (! await isRaspberryPi() ) {
+  echo.info('System is not a Raspberry Pi with dotpi: no uninstallation');
+  // no error
+  process.exit(0);
+}
+
+if (process.getuid() !== 0) {
+  echo.error('This script must be run as root');
+  process.exit(1);
+}
+
+// __filename and __dirname are undefined in module type
+const localFileName = fileURLToPath(import.meta.url);
+const localPath = path.dirname(localFileName);
+
+try {
+  const dotpiRoot = await dotpiRootGet();
+
+  // dotpi_led
+  const destinationFile = path.join(dotpiRoot, 'bin', 'dotpi_led');
+  echo.info(`Uninstall ${destinationFile}`);
+  await fs.rm(destinationFile, { recursive: true, force: true });
+
+  // service
+  const serviceName = 'dotpi-led.service';
+  echo.info(`Uninstall service ${serviceName}`);
+  const output = await service.uninstall({
+    name: serviceName,
+    user: false, // root is needed for hardware access
+  });
+  console.log(output.all);
+  if (output.exitCode !== 0) {
+    echo.error(`Failed to install ${serviceName}: ${output.stderr}`);
+  }
+
+  process.exit(output.exitCode);
+} catch (error) {
+  echo.error(`Error with '${localFileName}'`, error.message);
+  let exitCode = 1;
+  if (error && error.cause) {
+    exitCode = error.cause.code;
+  }
+  process.exit(exitCode);
+}
