@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 import { moduleConfigurationPathGet } from '@dotpi/module/configuration.js';
 
-export const filename = 'config.js';
+export const filename = 'config.mjs';
 
 // __filename and __dirname are undefined in module type
 const localFileName = fileURLToPath(import.meta.url);
