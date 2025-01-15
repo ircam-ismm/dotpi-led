@@ -22,6 +22,8 @@ const gpioDefault = {
 export async function createConfig({
   dotpiRoot,
   project,
+  stripSize,
+  stripType,
   command,
 }) {
 
@@ -95,6 +97,8 @@ export async function createConfig({
       server: {},
       led: {
         gpio: (audioDeviceIsAnalog ? 21 : 12),
+        stripSize,
+        stripType,
       },
     }
 
@@ -126,7 +130,7 @@ export async function createConfig({
 
     // validate
 
-    const config = (await import(configFile));
+    const config = (await import(configFile)).default;
     console.log('Configuration:', { ...config });
 
   } catch (error) {
