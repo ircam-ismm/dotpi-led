@@ -130,7 +130,7 @@ export async function createConfig({
 
     // validate
 
-    const config = (await import(configFile)).default;
+    const config = await import(configFile);
     console.log('Configuration:', { ...config });
 
   } catch (error) {
