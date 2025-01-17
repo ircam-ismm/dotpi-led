@@ -30,7 +30,7 @@ try {
   const dotpiRoot = await dotpiRootGet();
 
   // dotpi_led
-  const destinationFile = path.join(dotpiRoot, 'bin', 'dotpi_led');
+  const destinationFile = path.resolve(dotpiRoot, 'bin', 'dotpi_led');
   echo.info(`Uninstall ${destinationFile}`);
   await fs.rm(destinationFile, { recursive: true, force: true });
 

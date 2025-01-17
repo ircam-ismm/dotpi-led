@@ -31,14 +31,14 @@ try {
   const dotpiRoot = await dotpiRootGet();
 
   // dotpi_led to generate configuration file
-  const destinationFile = path.join(dotpiRoot, 'bin', 'dotpi_led');
+  const destinationFile = path.resolve(dotpiRoot, 'bin', 'dotpi_led');
   const sourceFile = path.resolve(localPath, '..', 'src', 'dotpi_led', 'index.js');
   echo.info(`Install ${destinationFile} -> ${sourceFile}`);
   await symlink(sourceFile, destinationFile);
 
   // service for led server
   const serviceName = 'dotpi-led.service';
-  const serviceFile = path.join(localPath, serviceName);
+  const serviceFile = path.resolve(localPath, serviceName);
   const output = await service.install({
     file: serviceFile,
     user: false, // root is needed for hardware access

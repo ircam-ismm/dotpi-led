@@ -11,7 +11,7 @@ const localFileName = fileURLToPath(import.meta.url);
 const localPath = path.dirname(localFileName);
 
 const moduleDefinition = JSON.parse(await fs.readFile(
-  path.join(localPath, '..', '..', 'package.json')));
+  path.resolve(localPath, '..', '..', 'package.json')));
 
 export async function read(file) {
   let configurationFile;

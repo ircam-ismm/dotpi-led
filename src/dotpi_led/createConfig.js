@@ -50,7 +50,7 @@ export async function createConfig({
   // Be sure to source the project after dotpi initialisation,
   // to over-ride the default $DOTPI_ROOT values
   if (project) {
-    sourceFiles.push(path.join(project, 'dotpi_project.bash'));
+    sourceFiles.push(path.resolve(project, 'dotpi_project.bash'));
   }
   try {
     // Be sure to NOT use the 'dotpi' separate binary here,
@@ -84,7 +84,7 @@ export async function createConfig({
     const localPath = path.dirname(localFileName);
 
     const moduleDefinition = JSON.parse(await fs.readFile(
-        path.join(localPath, '..', '..', 'package.json')));
+        path.resolve(localPath, '..', '..', 'package.json')));
 
     const gpio = (audioDeviceIsAnalog
       ? gpioDefault.analogAudioDevice
@@ -104,7 +104,7 @@ export async function createConfig({
 
     //overrides
 
-    const templateFile = path.join(localPath, 'configTemplate.js');
+    const templateFile = path.resolve(localPath, 'configTemplate.js');
     const configText = await renderFile(templateFile, configOptions);
 
 
@@ -112,7 +112,7 @@ export async function createConfig({
 
     let configDestination;
     if (project) {
-      configDestination = path.join(project, 'dotpi_filesystem');
+      configDestination = path.resolve(project, 'dotpi_filesystem');
     } else {
       configDestination = dotpiRoot;
     }
@@ -122,7 +122,7 @@ export async function createConfig({
       dotpiRoot: configDestination,
     });
 
-    const configFile = path.join(configPath, configuration.filename);
+    const configFile = path.resolve(configPath, configuration.filename);
 
     echo.info(`Write configuration to ${configFile}`);
     await fs.mkdir(configPath, { recursive: true });
