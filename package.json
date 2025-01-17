@@ -12,6 +12,7 @@
   "scripts": {
     "postinstall": "./dotpi/dotpi_install",
     "preuninstall": "./dotpi/dotpi_uninstall",
+    "create-config": "./src/dotpi_led/index.js create-config",
     "dotpi": "node ./src/server/index.js"
   },
   "author": "",
