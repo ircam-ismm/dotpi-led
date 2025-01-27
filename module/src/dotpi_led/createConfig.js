@@ -12,7 +12,7 @@ import * as echo from '@dotpi/javascript/echo.js';
 
 import { renderFile } from '@dotpi/javascript/template.js';
 
-import * as configuration from '../share/configuration.js';
+import * as configuration from '@dotpi/led/configuration.js';
 
 const gpioDefault = {
   analogAudioDevice: 21,

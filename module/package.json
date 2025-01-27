@@ -23,5 +23,6 @@
     "commander": "^12.1.0",
     "execa": "^9.5.2",
     "rpi-ws281x-native": "^1.0.4"
-  }
+  },
+  "gitHead": "1043ec4870bc6dc891c247360fad1b9681b69fd4"
 }

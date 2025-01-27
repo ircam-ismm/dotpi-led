@@ -8,5 +8,6 @@
   "dependencies": {
     "@dotpi/javascript": "^1.4.0",
     "@soundworks/core": "4.0.0-alpha.29"
-  }
+  },
+  "gitHead": "1043ec4870bc6dc891c247360fad1b9681b69fd4"
 }
