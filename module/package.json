@@ -1,6 +1,6 @@
 {
   "name": "@dotpi/led-module",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "dotpi_module LED server",
   "type": "module",
   "bin": {
@@ -16,7 +16,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@dotpi/javascript": "^1.4.0",
-    "@dotpi/led": "^3.0.0",
+    "@dotpi/led": "^3.1.0",
     "@dotpi/module": "^1.4.0",
     "@soundworks/core": "4.0.0-alpha.29",
     "chalk": "^5.4.1",
