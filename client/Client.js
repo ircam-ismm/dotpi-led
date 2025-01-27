@@ -1,5 +1,5 @@
 import { Client as SoundworksClient } from '@soundworks/core/client.js';
-import * as configuration from '../share/configuration.js';
+import * as configuration from './configuration.js';
 
 export class Client {
 

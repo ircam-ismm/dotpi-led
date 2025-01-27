@@ -1,5 +1,3 @@
-import { execSync } from 'node:child_process';
-
 import * as echo from '@dotpi/javascript/echo.js';
 import { isRaspberryPi } from '@dotpi/javascript/system.js';
 

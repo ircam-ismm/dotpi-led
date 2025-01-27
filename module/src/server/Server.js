@@ -1,5 +1,5 @@
 import { Server as SoundworksServer } from '@soundworks/core/server.js';
-import * as configuration from '../share/configuration.js';
+import * as configuration from '@dotpi/led/configuration.js';
 
 import {
   schema as fillSchema,

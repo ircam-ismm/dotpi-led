@@ -83,8 +83,7 @@ export async function createConfig({
     const localFileName = fileURLToPath(import.meta.url);
     const localPath = path.dirname(localFileName);
 
-    const moduleDefinition = JSON.parse(await fs.readFile(
-        path.resolve(localPath, '..', '..', 'package.json')));
+    const { moduleDefinition }  = configuration;
 
     const gpio = (audioDeviceIsAnalog
       ? gpioDefault.analogAudioDevice

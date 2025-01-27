@@ -1,5 +1,5 @@
 import { program } from 'commander';
-import { Client } from '@dotpi/led/client/Client.js';
+import { Client } from '@dotpi/led/Client.js';
 
 // to debug
 program.option('-c, --configuration <file>', 'configuration file');

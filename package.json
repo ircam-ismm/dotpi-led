@@ -1,29 +1,15 @@
 {
-  "name": "@dotpi/led",
+  "name": "@dotpi/led-workspace",
   "version": "2.2.1",
-  "description": "LED server for dotpi clients",
+  "description": "dotpi_led workspace",
   "type": "module",
-  "bin": {
-    "dotpi_led": "./src/dotpi_led/index.js"
-  },
-  "exports": {
-    "./*.js": "./src/*.js"
-  },
-  "scripts": {
-    "postinstall": "./dotpi/dotpi_install",
-    "preuninstall": "./dotpi/dotpi_uninstall",
-    "create-config": "./src/dotpi_led/index.js create-config",
-    "dotpi": "node ./src/server/index.js"
-  },
   "author": "",
   "license": "BSD-3-Clause",
-  "dependencies": {
-    "@dotpi/javascript": "^1.4.0",
-    "@dotpi/module": "^1.4.0",
-    "@soundworks/core": "4.0.0-alpha.29",
-    "chalk": "^5.4.1",
-    "commander": "^12.1.0",
-    "execa": "^9.5.2",
-    "rpi-ws281x-native": "^1.0.4"
+  "workspaces": [
+    "client",
+    "module"
+  ],
+  "devDependencies": {
+    "lerna": "^8.1.9"
   }
 }

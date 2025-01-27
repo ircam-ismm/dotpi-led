@@ -10,8 +10,10 @@ export const filename = 'config.mjs';
 const localFileName = fileURLToPath(import.meta.url);
 const localPath = path.dirname(localFileName);
 
-const moduleDefinition = JSON.parse(await fs.readFile(
-  path.resolve(localPath, '..', '..', 'package.json')));
+export const moduleDefinition = JSON.parse(await fs.readFile(
+  path.resolve(localPath, '..', 'package.json')));
+// over-ride with generic module name
+moduleDefinition.name = '@dotpi/led';
 
 export async function read(file) {
   let configurationFile;
