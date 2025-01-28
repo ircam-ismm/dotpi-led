@@ -11,7 +11,7 @@ const localFileName = fileURLToPath(import.meta.url);
 const localPath = path.dirname(localFileName);
 
 export const moduleDefinition = JSON.parse(await fs.readFile(
-  path.resolve(localPath, '..', 'package.json')));
+  path.resolve(localPath, 'package.json')));
 // over-ride with generic module name
 moduleDefinition.name = '@dotpi/led';
 
