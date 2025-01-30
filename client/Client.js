@@ -19,12 +19,11 @@ export class Client {
   }
 
   async init() {
-    const configurationFile = await configuration.read(this.configurationFile);
-    this.configuration = { ...configurationFile };
+    this.configuration = await configuration.read(this.configurationFile);
     this.configurationSoundworks = {
       ...configuration.soundworksClient,
     };
-    Object.assign(this.configurationSoundworks.env, configurationFile.server);
+    Object.assign(this.configurationSoundworks.env, this.configuration.server);
 
     this.soundworksClient = new SoundworksClient(this.configurationSoundworks);
     return this;

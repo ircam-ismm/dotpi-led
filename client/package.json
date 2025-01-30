@@ -7,6 +7,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@dotpi/javascript": "^1.4.0",
+    "@dotpi/module": "^1.6.1",
     "@soundworks/core": "4.0.0-alpha.29"
   },
   "gitHead": "1043ec4870bc6dc891c247360fad1b9681b69fd4"

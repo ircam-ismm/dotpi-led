@@ -27,6 +27,13 @@ export async function createConfig({
   command,
 }) {
 
+  const configurationFromArguments = {
+    led: {
+      stripSize,
+      stripType,
+    }
+  };
+
   if (!dotpiRoot) {
     try {
       dotpiRoot = await dotpiRootGet();
@@ -90,22 +97,29 @@ export async function createConfig({
       : gpioDefault.digitalAudioDevice
     );
 
-    // defaults in template
-    const configOptions = {
-      module: moduleDefinition,
-      server: {},
-      led: {
-        gpio: (audioDeviceIsAnalog ? 21 : 12),
-        stripSize,
-        stripType,
-      },
-    }
+    // copy default values
+    const configOptions = { ...configuration.defaultValues};
+    // add module definition
+    configOptions.module = { ...moduleDefinition };
+    // add computed gpio
+    configOptions.led.gpio = gpio;
 
-    //overrides
+    Object.keys(configurationFromArguments).forEach((key) => {
+      if (typeof configOptions[key] === 'undefined') {
+        return;
+      }
+      Object.keys(configurationFromArguments[key]).forEach((subkey) => {
+        if (typeof configOptions[key][subkey] === 'undefined'
+          || typeof configurationFromArguments[key][subkey] === 'undefined'
+        ) {
+          return;
+        }
+        configOptions[key][subkey] = configurationFromArguments[key][subkey];
+      });
+    });
 
     const templateFile = path.resolve(localPath, 'configTemplate.js');
     const configText = await renderFile(templateFile, configOptions);
-
 
     // write configuration file
 

@@ -6,6 +6,22 @@ import { moduleConfigurationPathGet } from '@dotpi/module/configuration.js';
 
 export const filename = 'config.mjs';
 
+export const defaultValues = {
+  server: {
+    port: 9999,
+    verbose: false,
+  },
+  led: {
+    stripSize: 10,
+    stripType: 'ws2812',
+    brightness: 255,
+    invert: false,
+    gpio: 12,
+    dma: 10,
+    freq: 800000,
+  },
+}
+
 // __filename and __dirname are undefined in module type
 const localFileName = fileURLToPath(import.meta.url);
 const localPath = path.dirname(localFileName);
@@ -25,7 +41,22 @@ export async function read(file) {
     });
     configurationFile = path.resolve(configurationPath, filename);
   }
-  const configuration = { ...(await import(configurationFile)) };
+
+  const configurationFromFile = await import(configurationFile);
+
+  const configuration = {
+    ...defaultValues,
+   };
+
+   Object.keys(configurationFromFile).forEach((key) => {
+    if (typeof configuration[key] === 'undefined') {
+      return;
+    }
+    Object.assign(configuration[key], {
+      ...configurationFromFile[key],
+    });
+   });
+
   configuration.file = configurationFile;
 
   return configuration;

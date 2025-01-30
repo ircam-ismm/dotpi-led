@@ -25,12 +25,14 @@ export class Server {
   }
 
   async init() {
-    const configurationFile = await configuration.read(this.configurationFile);
-    this.configuration = { ...configurationFile };
+    this.configuration = await configuration.read(this.configurationFile);
+
     this.configurationSoundworks = {
       ...configuration.soundworksServer,
     }
-    Object.assign(this.configurationSoundworks.env, configurationFile.server);
+    if (typeof this.configuration.server !== 'undefined') {
+      Object.assign(this.configurationSoundworks.env, this.configuration.server);
+  }
 
     this.soundworksServer = new SoundworksServer(this.configurationSoundworks);
 

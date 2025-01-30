@@ -5,31 +5,31 @@ export const module = {
 };
 
 export const server = {
-  port: ${d.server.port ? d.server.port : 9999},
-  verbose: ${typeof d.server.verbose !== 'undefined' ? d.server.verbose : false},
+  port: ${d.server.port},
+  verbose: ${d.server.verbose},
 };
 
 export const led = {
   // cf. https://github.com/beyondscreen/node-rpi-ws281x-native/blob/master/lib/constants.js
 
   // for more than 10 led pixels, do not directly connect to GPIO
-  stripSize: ${d.led.stripSize ? d.led.stripSize : 10},
+  stripSize: ${d.led.stripSize},
 
   // ws2812 is an alias of ws2812-grb
   // sk6812 is an alias of sk6812-grbw
-  stripType: '${d.led.stripType ? d.led.stripType : 'ws2812'}',
+  stripType: '${d.led.stripType}',
 
   // in [0-255]
-  brightness: 255,
+  brightness: ${d.led.brightness},
   // invert brightness
-  invert: false,
+  invert: ${d.led.inverse ? true : false},
 
   // use 12 for PWM 0 when using digital audio (sound interface)
   // use 21 for PCM DOUT when using analog audio (headphones)
-  gpio: ${d.led.gpio ? d.led.gpio : 12},
+  gpio: ${d.led.gpio},
 
   // dma channel
-  dma: 10,
+  dma: ${d.led.dma},
   // frequency
-  freq: 800000,
+  freq: ${d.led.freq},
 };
