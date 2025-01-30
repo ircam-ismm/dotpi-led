@@ -4,7 +4,7 @@ Description=dotpi-led service
 [Service]
 Type=exec
 ExecStart=npm run dotpi
-WorkingDirectory=/opt/dotpi/lib/dotpi_modules/@dotpi/led
+WorkingDirectory=/opt/dotpi/lib/dotpi_modules/@dotpi/led-module
 Restart=always
 
 # wait before restarting
