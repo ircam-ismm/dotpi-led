@@ -24,7 +24,7 @@ const stripSizeDefault = 3;
 let ws281x = null;
 let ws2812xConstants = null;
 let channel = null;
-let coloursArray = null;
+let pixelsArray = null;
 let stripWhiteLed = false;
 
 export function rgbw_to_colour(r, g, b, w) {
@@ -36,11 +36,11 @@ export function rgbw_to_colour(r, g, b, w) {
 }
 
 export function colour_fill(colour) {
-  if (!coloursArray) {
+  if (!pixelsArray) {
     return;
   }
   for (let c = 0; c < channel.count; c++) {
-    coloursArray[c] = colour;
+    pixelsArray[c] = colour;
   }
 }
 
@@ -164,7 +164,7 @@ export async function init({
         stripWhiteLed = stripWhiteLed || channel.stripType === ws2812xConstants.stripTypeIds[stripType];
       });
 
-      coloursArray = channel.array;
+      pixelsArray = channel.array;
 
       rgbw_fill_and_render(0, 0, 0, 0);
 
