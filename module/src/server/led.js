@@ -22,6 +22,7 @@ if (process.getuid() !== 0) {
 const stripSizeDefault = 3;
 
 let ws281x = null;
+let ws2812xConstants = null;
 let channel = null;
 let coloursArray = null;
 let stripWhiteLed = false;
@@ -138,6 +139,7 @@ export async function init({
 
     if (isDotpi) {
       ({ default: ws281x } = await import('rpi-ws281x-native'));
+      ({ default: ws2812xConstants } = await import('rpi-ws281x-native/lib/constants.js'));
 
       const ws281x_options = {
         dma,
@@ -159,7 +161,7 @@ export async function init({
         ws281x.stripType.SK6812_BGRW,
         ws281x.stripType.SK6812,
       ].forEach( (stripType) => {
-        stripWhiteLed |= channel.stripType === stripType;
+        stripWhiteLed = stripWhiteLed || channel.stripType === ws2812xConstants.stripTypeIds[stripType];
       });
 
       coloursArray = channel.array;
