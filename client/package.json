@@ -1,6 +1,6 @@
 {
   "name": "@dotpi/led",
-  "version": "3.1.5",
+  "version": "3.2.0",
   "description": "dotpi_module LED client",
   "type": "module",
   "author": "",
