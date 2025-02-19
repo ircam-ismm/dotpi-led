@@ -12,13 +12,14 @@ export const defaultValues = {
     verbose: false,
   },
   led: {
-    stripSize: 10,
-    stripType: 'ws2812',
+    refreshRate: 60, // in hertz
+    stripSize: 10, // number of pixels
+    stripType: 'ws2812', // see rpi-ws281x-native
     brightness: 255,
     invert: false,
     gpio: 12,
     dma: 10,
-    freq: 800000,
+    freq: 800000, // in hertz
   },
 }
 

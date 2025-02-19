@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import { program } from 'commander';
+import { throttle } from 'lodash-es';
+
 import { Server } from './Server.js';
 
 import * as led from './led.js';
@@ -35,7 +37,7 @@ try {
 
   const clients = new Set();
 
-  function fillIntegrate() {
+  function _fillIntegrate() {
     const integration = {
       r: 0,
       g: 0,
@@ -59,6 +61,22 @@ try {
     const { r, g, b, w } = integration;
     led.rgbw_fill_and_render(r, g, b, w);
   }
+
+  // limit in [1,100] Hz
+  let refreshRate = Math.max(1,
+    Math.min(100,
+      server.configuration.led.refreshRate,
+    ),
+  );
+  const ledRefreshPeriodLimit = 1000 / refreshRate; // in ms
+  const fillIntegrate = throttle(
+    _fillIntegrate,
+    ledRefreshPeriodLimit,
+    {
+      leading: true,
+      trailing: true,
+    },
+  );
 
   fillClientCollections.forEach((fillClientCollection) => {
 
