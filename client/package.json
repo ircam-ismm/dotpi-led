@@ -5,6 +5,10 @@
   "type": "module",
   "author": "",
   "license": "BSD-3-Clause",
+  "exports": {
+    ".": "./Client.js",
+    "./Client.js": "./Client.js"
+  },
   "dependencies": {
     "@dotpi/javascript": "^1.4.0",
     "@dotpi/module": "^1.6.1",
