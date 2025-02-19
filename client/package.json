@@ -7,7 +7,8 @@
   "license": "BSD-3-Clause",
   "exports": {
     ".": "./Client.js",
-    "./Client.js": "./Client.js"
+    "./Client.js": "./Client.js",
+    "./configuration.js": "./configuration.js"
   },
   "dependencies": {
     "@dotpi/javascript": "^1.4.0",
