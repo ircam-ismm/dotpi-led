@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { program } from 'commander';
 import { Client } from '@dotpi/led/Client.js';
 
