@@ -2,8 +2,7 @@
 
 To use this, you need a dotpi system, with the `@dotpi/led-module` installed and configured.
 
-See [dotpi](https://github.com/ircam-ismm/dotpi).
-See [@dotpi/led-module]()
+See [dotpi](https://ircam-ismm.github.io/dotpi/).
 
 ## Installation
 
